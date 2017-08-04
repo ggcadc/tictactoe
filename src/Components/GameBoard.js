@@ -10,19 +10,28 @@ class GameBoard extends Component {
     return(
       <div className='game-board'>
         <div className='board'>
-          <div className='square' id='1'>{this.props.xoState[1]}</div>
-          <div className='square' id='2'>{this.props.xoState[2]}</div>
-          <div className='square' id='3'>{this.props.xoState[3]}</div>
+          <div className='square' id='1'>{this.props.xoState[1]? this.props.xoState[1]:<button onClick={(e) => this.props.makeMove(e, 1, 'X')}>x/o</button>}
+          </div>
+          <div className='square' id='2'>{this.props.xoState[2]? this.props.xoState[2]:<button onClick={(e) => this.props.makeMove(e, 2, 'X')}>x/o</button>}
+        </div>
+          <div className='square' id='3'>{this.props.xoState[3]? this.props.xoState[3]:<button onClick={(e) => this.props.makeMove(e, 3, 'X')}>x/o</button>}
+        </div>
         </div>
         <div className='board'>
-          <div className='square' id='4'>{this.props.xoState[4]}</div>
-          <div className='square' id='5'>{this.props.xoState[5]}</div>
-          <div className='square' id='6'>{this.props.xoState[6]}</div>
+          <div className='square' id='4'>{this.props.xoState[4]? this.props.xoState[4]:<button onClick={(e) => this.props.makeMove(e, 4, 'X')}>x/o</button>}
+        </div>
+          <div className='square' id='5'>{this.props.xoState[5]? this.props.xoState[5]:<button onClick={(e) => this.props.makeMove(e, 5, 'X')}>x/o</button>}
+        </div>
+          <div className='square' id='6'>{this.props.xoState[6]? this.props.xoState[6]:<button onClick={(e) => this.props.makeMove(e, 6, 'X')}>x/o</button>}
+        </div>
         </div>
         <div className='board'>
-          <div className='square' id='7'>{this.props.xoState[7]}</div>
-          <div className='square' id='8'>{this.props.xoState[8]}</div>
-          <div className='square' id='9'>{this.props.xoState[9]}</div>
+          <div className='square' id='7'>{this.props.xoState[7]? this.props.xoState[7]:<button onClick={(e) => this.props.makeMove(e, 7, 'X')}>x/o</button>}
+        </div>
+          <div className='square' id='8'>{this.props.xoState[8]? this.props.xoState[8]:<button onClick={(e) => this.props.makeMove(e, 8, 'X')}>x/o</button>}
+        </div>
+          <div className='square' id='9'>{this.props.xoState[9]? this.props.xoState[9]:<button onClick={(e) => this.props.makeMove(e, 9, 'X')}>x/o</button>}
+        </div>
         </div>
 
       </div>
