@@ -1,12 +1,18 @@
 body {
   margin: 0;
   padding: 0;
+  background-color: black;
   font-family: 'Fruktur', cursive;
+  color: white;
+}
+
+h1 {
+  font-size: 320%;
 }
 
 button {
   height: 200px;
-  width: 200px;
+  width: 150px;
   background: transparent;
   border: none;
   font-size: 0;
@@ -14,7 +20,7 @@ button {
 
 .game-board {
   display:flex;
-  padding-top: 10vh;
+  padding-top: 5vh;
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -30,7 +36,14 @@ button {
   font-size: 80px;
   padding-top: 50px;
   align-items: center;
-  border-color: white;
+  border-color: black;
   border-style: solid;
   color: black;
+}
+
+.visible{
+  background: rgb(113, 207, 223);
+  font-size: 100%;
+  height: 50px;
+  width: auto;
 }
