@@ -1,7 +1,7 @@
 body {
   margin: 0;
   padding: 0;
-  background-color: black;
+  background-color: #111;
   font-family: 'Fruktur', cursive;
   color: white;
 }
@@ -11,11 +11,15 @@ h1 {
 }
 
 button {
-  height: 130px;
-  width: 170px;
+  height: 10vh;
+  width: 10vw;
   background: transparent;
   border: none;
   font-size: 0;
+}
+button:focus {
+  border: none;
+  outline: none;
 }
 
 .game-board {
@@ -31,10 +35,10 @@ button {
   background-color: rgb(113, 207, 223);
 }
 .square{
-  height: 150px;
-  width: 200px;
-  font-size: 80px;
-  padding-top: 50px;
+  height: 10vh;
+  width: 10vw;
+  font-size: 2vw;
+  padding-top: 5vh;
   align-items: center;
   border-color: black;
   border-style: solid;

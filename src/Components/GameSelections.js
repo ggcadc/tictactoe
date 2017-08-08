@@ -14,6 +14,9 @@ class GameSelections extends Component {
           <button className='visible' onClick={() => this.props.player('O')}>O</button>
         </p>
         <button className='visible' onClick={this.props.reset}>reset</button>
+        <div className={this.props.winner?'visible':'hidden'}>
+          <p>{this.props.winner} wins!</p>
+        </div>
       </div>
     )
   }

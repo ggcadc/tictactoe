@@ -82,17 +82,30 @@ class App extends Component {
   }
   //this is dumb AI that will lose almost every time
   findAiMove() {
+    //makes sure the board is not full because async state
+    let fullboard = Object.keys(this.state.spaceState).reduce((prev, e, obj) => {
+      prev += this.state.spaceState[e];
+      return prev;
+    }, [])
+    if (fullboard.length === 9) {
+      return;
+    }
+    //gets an array of the current board state
     let board = Object.keys(this.state.spaceState).map((val, i) => {
       return this.state.spaceState[i]
     }, []);
+    //This selects a random move
     let move = Math.floor(Math.random() * 8) + 1;
+    //if the square has been taken it runs again
     if (board[move]) {
       this.findAiMove();
       return
     }
+    //selects the mark oposite the human player
     let mark = this.state.player === 'O'
       ? 'X'
       : 'O';
+    //makes the move
     this.makeMove(move, mark);
   }
 
@@ -104,54 +117,63 @@ class App extends Component {
   }
 
   checkWinner() {
+    //winning game states
+    let topRow = this.state.spaceState[1] + this.state.spaceState[2] + this.state.spaceState[3];
+    if (typeof topRow === 'string' && topRow.match(/XXX|OOO/)) {
+      this.setState({winner: topRow[1]})
+      setTimeout(() => {this.resetBoard();}, 2000)
+      return;
+    }
+    let midRow = this.state.spaceState[4] + this.state.spaceState[5] + this.state.spaceState[6];
+    if (typeof midRow === 'string' && midRow.match(/XXX|OOO/)) {
+      this.setState({winner: midRow[1]})
+      setTimeout(() => {this.resetBoard();}, 2000)
+      return;
+    }
+    let bottomRow = this.state.spaceState[7] + this.state.spaceState[8] + this.state.spaceState[9];
+    if (typeof bottomRow === 'string' && bottomRow.match(/XXX|OOO/)) {
+      this.setState({winner: bottomRow[1]})
+      setTimeout(() => {this.resetBoard();}, 2000)
+      return;
+    }
+    let leftCol = this.state.spaceState[1] + this.state.spaceState[4] + this.state.spaceState[7];
+    if (typeof leftCol === 'string' && leftCol.match(/XXX|OOO/)) {
+      this.setState({winner: leftCol[1]})
+      setTimeout(() => {this.resetBoard();}, 2000)
+      return;
+    }
+    let midCol = this.state.spaceState[2] + this.state.spaceState[5] + this.state.spaceState[8];
+    if (typeof midCol === 'string' && midCol.match(/XXX|OOO/)) {
+      this.setState({winner: midCol[1]})
+      setTimeout(() => {this.resetBoard();}, 2000)
+      return;
+    }
+    let rtCol = this.state.spaceState[3] + this.state.spaceState[6] + this.state.spaceState[9];
+    if (typeof rtCol === 'string' && rtCol.match(/XXX|OOO/)) {
+      this.setState({winner: rtCol[1]})
+      setTimeout(() => {this.resetBoard();}, 2000)
+      return;
+    }
+    let diagA = this.state.spaceState[1] + this.state.spaceState[5] + this.state.spaceState[9];
+    if (typeof diagA === 'string' && diagA.match(/XXX|OOO/)) {
+      this.setState({winner: diagA[1]})
+      setTimeout(() => {this.resetBoard();}, 2000)
+      return;
+    }
+    let diagB = this.state.spaceState[3] + this.state.spaceState[5] + this.state.spaceState[7];
+    if (typeof diagB === 'string' && diagB.match(/XXX|OOO/)) {
+      this.setState({winner: diagB[1]})
+      setTimeout(() => {this.resetBoard();}, 2000)
+      return;
+    }
     //check for full state
     let fullboard = Object.keys(this.state.spaceState).reduce((prev, e, obj) => {
       prev += this.state.spaceState[e];
       return prev;
     }, [])
     if (fullboard.length === 9) {
-      this.setState({winner: 'tie'})
-      return;
-    }
-    //winning game states
-    let topRow = this.state.spaceState[1] + this.state.spaceState[2] + this.state.spaceState[3];
-    if (typeof topRow === 'string' && topRow.match(/XXX|OOO/)) {
-      this.setState({winner: topRow[1]})
-      return;
-    }
-    let midRow = this.state.spaceState[4] + this.state.spaceState[5] + this.state.spaceState[6];
-    if (typeof midRow === 'string' && midRow.match(/XXX|OOO/)) {
-      this.setState({winner: midRow[1]})
-      return;
-    }
-    let bottomRow = this.state.spaceState[1] + this.state.spaceState[2] + this.state.spaceState[3];
-    if (typeof bottomRow === 'string' && bottomRow.match(/XXX|OOO/)) {
-      this.setState({winner: bottomRow[1]})
-      return;
-    }
-    let leftCol = this.state.spaceState[1] + this.state.spaceState[4] + this.state.spaceState[7];
-    if (typeof leftCol === 'string' && leftCol.match(/XXX|OOO/)) {
-      this.setState({winner: leftCol[1]})
-      return;
-    }
-    let midCol = this.state.spaceState[3] + this.state.spaceState[5] + this.state.spaceState[8];
-    if (typeof midCol === 'string' && midCol.match(/XXX|OOO/)) {
-      this.setState({winner: midCol[1]})
-      return;
-    }
-    let rtCol = this.state.spaceState[3] + this.state.spaceState[6] + this.state.spaceState[9];
-    if (typeof rtCol === 'string' && rtCol.match(/XXX|OOO/)) {
-      this.setState({winner: rtCol[1]})
-      return;
-    }
-    let diagA = this.state.spaceState[1] + this.state.spaceState[5] + this.state.spaceState[9];
-    if (typeof diagA === 'string' && diagA.match(/XXX|OOO/)) {
-      this.setState({winner: diagA[1]})
-      return;
-    }
-    let diagB = this.state.spaceState[3] + this.state.spaceState[5] + this.state.spaceState[7];
-    if (typeof diagB === 'string' && diagB.match(/XXX|OOO/)) {
-      this.setState({winner: diagB[1]})
+      this.setState({winner: 'Nobody'})
+      setTimeout(() => {this.resetBoard();}, 2000)
       return;
     }
   }
@@ -164,7 +186,10 @@ class App extends Component {
     return (
       <div className="App">
         <h1>Tic-Tac-Toe</h1>
-        <GameSelections reset={this.resetBoard.bind(this)} player={this.choosePlayer.bind(this)} playerState={this.state.player}/>
+        <GameSelections
+          reset={this.resetBoard.bind(this)} player={this.choosePlayer.bind(this)} playerState={this.state.player}
+          winner={this.state.winner}
+        />
         <GameBoard xoState={this.state.spaceState} turn={this.state.turn} makeMove={this.makeMove}/>
       </div>
     );
